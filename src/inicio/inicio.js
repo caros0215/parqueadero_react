@@ -11,7 +11,7 @@ const Tablero = ({ perfil, nombre }) => {
   return (
     
     <div className="content-wrapper">
-    <Header />
+
       <section className="content-header" style={{ color: 'white', backgroundColor: 'black' }}>
         <h1>
           Tablero

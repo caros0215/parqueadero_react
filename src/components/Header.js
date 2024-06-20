@@ -1,17 +1,20 @@
 import React from 'react';
-
+import Img from "../assets/plantilla/logo11.png";
+import Img2 from "../assets/plantilla/logo_final_2.png";
+import { Image } from "react-bootstrap";
 const Header = () => {
   return (
     <header className="main-header">
+    
       {/* LOGOTIPO */}
       <a href="inicio" className="logo" style={{ paddingBottom: '6%', backgroundColor: '#000000', borderBottom: '2px solid #e3aa00' }}>
         {/* logo mini */}
         <span className="logo-mini" style={{ paddingBottom: '0%' }}>
-          <img src="../assets/plantilla/logo11.png" className="img-responsive" style={{ padding: '8px', marginTop: '15%' }} alt="Logo Mini" />
+          <Image src={Img}  className="img-responsive" style={{ padding: '8px', marginTop: '15%' }} alt="Logo Mini" />
         </span>
         {/* logo normal */}
         <span className="logo-lg" style={{ paddingBottom: '6%' }}>
-          <img src="../assets/plantilla/logo_final_2.png" style={{ display: 'block', maxWidth: '88%', height: 'auto', marginTop: '1%' }} alt="Logo Normal" />
+          <Image src={Img2}   style={{ display: 'block', maxWidth: '88%', height: 'auto', marginTop: '1%' }} alt="Logo Normal" />
         </span>
       </a>
 
