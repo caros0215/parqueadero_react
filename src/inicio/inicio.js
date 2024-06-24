@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useLocation } from 'react-router-dom';
 // Importar los componentes necesarios
 import CajasSuperiores from './cajas-superiores';
 import GraficoVentas from './reportes/grafico-ventas';
@@ -7,7 +7,11 @@ import ProductosMasVendidos from './reportes/ProductosMasVendidos';
 import ProductosRecientes from './productos-recientes';
 import Header from '../components/Header';
 
-const Tablero = ({ perfil, nombre }) => {
+const Tablero = () => {
+
+  const location = useLocation();
+    const data = location.state?.data;
+  console.log('Tablero',data);
   return (
     
     <div className="content-wrapper">
@@ -26,35 +30,35 @@ const Tablero = ({ perfil, nombre }) => {
 
       <section className="content">
         <div className="row">
-          {perfil === "Administrador" && (
+          {data.user.perfil === "Administrador" && (
             <CajasSuperiores />
           )}
         </div>
 
         <div className="row">
           <div className="col-lg-12">
-            {perfil === "Administrador" && (
+            {data === "Administrador" && (
               <GraficoVentas />
             )}
           </div>
 
           <div className="col-lg-6">
-            {perfil === "Administrador" && (
+            {data === "Administrador" && (
               <ProductosMasVendidos />
             )}
           </div>
 
           <div className="col-lg-6">
-            {perfil === "Administrador" && (
+            {data.user.perfil === "Administrador" && (
               <ProductosRecientes />
             )}
           </div>
 
           <div className="col-lg-12">
-            {(perfil === "Especial" || perfil === "Vendedor") && (
+            {(data === "Especial" || data === "Vendedor") && (
               <div className="box box-success">
                 <div className="box-header">
-                  <h1>Bienvenid@ {nombre}</h1>
+                  <h1>Bienvenid@ {data.user.nombre}</h1>
                 </div>
               </div>
             )}

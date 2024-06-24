@@ -1,58 +1,69 @@
 import React from 'react';
 
 const Sidebar = () => {
-  // Lógica para determinar qué elementos mostrar según el perfil de usuario (simulado)
-  const perfil = sessionStorage.getItem("perfil");
+  // Recuperar y parsear la sesión desde localStorage
+  const sesionString = localStorage.getItem("session");
+  const sesion = sesionString ? JSON.parse(sesionString) : null;
 
-  // Función para renderizar los elementos del menú según el perfil
+  if (!sesion || !sesion.user) {
+    console.error("No se encontró la sesión o el usuario en localStorage");
+    return null; // Retorna null si no se encuentra la sesión
+  }
+
+  console.log('Perfil del usuario:', sesion.user.perfil);
+
+  // Función para renderizar los elementos del menú según el sesion.user.perfil
   const renderMenuItems = () => {
+    const perfil = sesion.user.perfil;
+
+    let menuItems = [];
+
+    // Menú común para "Administrador"
     if (perfil === "Administrador") {
-      return (
-        <>
-          <li className="active">
-            <a href="inicio">
-              <i className="fa fa-home"></i>
-              <span>Inicio</span>
-            </a>
-          </li>
-          <li>
-            <a href="usuarios">
-              <i className="fa fa-user"></i>
-              <span>Usuarios</span>
-            </a>
-          </li>
-        </>
+      menuItems.push(
+        <li className="active" key="inicio">
+          <a href="inicio">
+            <i className="fa fa-home"></i>
+            <span>Inicio</span>
+          </a>
+        </li>,
+        <li key="usuarios">
+          <a href="usuarios">
+            <i className="fa fa-user"></i>
+            <span>Usuarios</span>
+          </a>
+        </li>
       );
     }
 
+    // Menú común para "Administrador" y "Especial"
     if (perfil === "Administrador" || perfil === "Especial") {
-      return (
-        <>
-          <li>
-            <a href="categorias">
-              <i className="fa fa-money"></i>
-              <span>Tarifas</span>
-            </a>
-          </li>
-          <li>
-            <a href="productos">
-              <i className="fa fa-indent"></i>
-              <span>Ingresos</span>
-            </a>
-          </li>
-          <li>
-            <a href="salidas">
-              <i className="fa fa-sign-out"></i>
-              <span>Salidas</span>
-            </a>
-          </li>
-        </>
+      menuItems.push(
+        <li key="categorias">
+          <a href="categorias">
+            <i className="fa fa-money"></i>
+            <span>Tarifas</span>
+          </a>
+        </li>,
+        <li key="productos">
+          <a href="productos">
+            <i className="fa fa-indent"></i>
+            <span>Ingresos</span>
+          </a>
+        </li>,
+        <li key="salidas">
+          <a href="salidas">
+            <i className="fa fa-sign-out"></i>
+            <span>Salidas</span>
+          </a>
+        </li>
       );
     }
 
+    // Menú común para "Administrador" y "Vendedor"
     if (perfil === "Administrador" || perfil === "Vendedor") {
-      return (
-        <li>
+      menuItems.push(
+        <li key="clientes">
           <a href="clientes">
             <i className="fa fa-users"></i>
             <span>Abonados</span>
@@ -61,35 +72,36 @@ const Sidebar = () => {
       );
     }
 
-    // Caso para Vendedor específicamente
+    // Menú específico para "Administrador" y "Vendedor"
     if (perfil === "Administrador" || perfil === "Vendedor") {
-      return (
-        <>
-          <li>
-            <a href="cajas">
-              <i className="fa fa-cart-plus"></i>
-              <span>Caja</span>
-            </a>
-          </li>
-          <li>
-            <a href="crear-venta">
-              <i className="fa fa-usd"></i>
-              <span>Pagos</span>
-            </a>
-          </li>
-          {perfil === "Administrador" && (
-            <li>
-              <a href="reportes">
-                <i className="fa fa-line-chart"></i>
-                <span>Reporte de ventas</span>
-              </a>
-            </li>
-          )}
-        </>
+      menuItems.push(
+        <li key="cajas">
+          <a href="cajas">
+            <i className="fa fa-cart-plus"></i>
+            <span>Caja</span>
+          </a>
+        </li>,
+        <li key="crear-venta">
+          <a href="crear-venta">
+            <i className="fa fa-usd"></i>
+            <span>Pagos</span>
+          </a>
+        </li>
       );
+
+      if (perfil === "Administrador") {
+        menuItems.push(
+          <li key="reportes">
+            <a href="reportes">
+              <i className="fa fa-line-chart"></i>
+              <span>Reporte de ventas</span>
+            </a>
+          </li>
+        );
+      }
     }
 
-    return null; // Retorna null si el perfil no coincide con ninguno de los casos anteriores
+    return menuItems;
   };
 
   return (
