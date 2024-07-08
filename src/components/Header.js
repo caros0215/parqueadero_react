@@ -1,52 +1,21 @@
+// src/components/Header.js
 import React from 'react';
-import Img from "../assets/plantilla/logo11.png";
-import Img2 from "../assets/plantilla/logo_final_2.png";
-import { Image } from "react-bootstrap";
+import 'boxicons/css/boxicons.min.css';
+import './Header.css'; // Asegúrate de tener los estilos correspondientes
+
 const Header = () => {
   return (
-    <header className="main-header">
-    
-      {/* LOGOTIPO */}
-      <a href="inicio" className="logo" style={{ paddingBottom: '6%', backgroundColor: '#000000', borderBottom: '2px solid #e3aa00' }}>
-        {/* logo mini */}
-        <span className="logo-mini" style={{ paddingBottom: '0%' }}>
-          <Image src={Img}  className="img-responsive" style={{ padding: '8px', marginTop: '15%' }} alt="Logo Mini" />
-        </span>
-        {/* logo normal */}
-        <span className="logo-lg" style={{ paddingBottom: '6%' }}>
-          <Image src={Img2}   style={{ display: 'block', maxWidth: '88%', height: 'auto', marginTop: '1%' }} alt="Logo Normal" />
-        </span>
-      </a>
-
-      {/* BARRA DE NAVEGACIÓN */}
-      <nav className="navbar navbar-static-top" role="navigation" style={{ backgroundColor: '#000000', borderBottom: '2px solid #e3aa00', borderLeft: '2px solid #e3aa00' }}>
-        {/* Botón de navegación */}
-        <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">
-          <span className="sr-only">Toggle navigation</span>
-        </a>
-
-        {/* perfil de usuario */}
-        <div className="navbar-custom-menu">
-          <ul className="nav navbar-nav">
-            <li className="dropdown user user-menu">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" style={{ marginTop: '10%', zoom: '113%' }}>
-                {/* Imagen de usuario */}
-                { /* Puedes manejar la lógica de la imagen de usuario en React utilizando el estado y props, o si estás usando sesión en el backend */}
-                <img src={sessionStorage.getItem("foto") !== "" ? sessionStorage.getItem("foto") : 'vistas/img/usuarios/default/anonymous.png'} className="user-image" alt="Imagen de Usuario" />
-                <span className="hidden-xs">{sessionStorage.getItem("nombre")}</span>
-              </a>
-              {/* Dropdown-toggle */}
-              <ul className="dropdown-menu">
-                <li className="user-body">
-                  <div className="pull-right">
-                    <a href="salir" className="btn btn-default btn-flat">Salir</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
+    <header className="header">
+      <div className="header__container">
+        <img src="./assets/img/avatar.jpg" className="header__img" alt="Avatar" />
+        <div className="header__search">
+          <input type="search" placeholder="Buscar..." className="header__input" />
+          <i className="bx bx-search"></i>
         </div>
-      </nav>
+        <div className="header__toggle">
+          <i className="bx bx-menu" id="header-toggle"></i>
+        </div>
+      </div>
     </header>
   );
 };

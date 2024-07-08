@@ -17,7 +17,6 @@ html, body {
     justify-content: center;
     align-items: center;
     background-color: #000;
-    padding-top: 12%;
     padding-bottom: 4%; /* Color de fondo de respaldo */
 }
 
@@ -48,15 +47,17 @@ html, body {
 
 .form-control-feedback {
     position: absolute;
-    top: 47.1%;
-    right: 37.6%;
+    top: 13.1%;
+    right: 0.6%;
     z-index: 2;
     display: block;
-    width: 34px;
-    height: 34px;
+    width: 8%;
+    /* max-height: 33%; */
     line-height: 34px;
     text-align: center;
     pointer-events: none;
+    font-size: 156%;
+    /* zoom: 174%; */
 }
 
 .login-box-body .form-control-feedback, .register-box-body .form-control-feedback {
@@ -73,11 +74,12 @@ html, body {
     right: 0;
     z-index: 2;
     display: block;
-    top: 56%;
-    right: 38.4%;
+    top: 1%;
+    right: 2.4%;
     line-height: 34px;
     text-align: center;
     pointer-events: none;
+    font-size: 156%;
 }
 
 .form-control:focus {

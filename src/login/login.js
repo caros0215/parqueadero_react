@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'; // Importa useHistory desde react-router-dom
-import '../assets/css/adminlte.css';
+import '../assets/css/AdminLTE.css';
 import './login.css';
 import Img from "../assets/plantilla/logo_final_2.png";
 import Img2 from "../assets/plantilla/parqueadero.jpeg";
